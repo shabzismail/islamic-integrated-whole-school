@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Our School</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('YHwL5ZZ6zT20pCMrx'); // Replace with your actual Public Key
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact">
+            <h1 class="title">Contact Us</h1>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2>Get in Touch</h2>
+                    <form id="contact-form">
+                        <!-- Hidden field to include any additional data -->
+                        <input type="hidden" name="contact_number" value="697483">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="user_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="user_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <button id="send-whatsapp" type="button" style="margin-top: 10px;">Send Message via WhatsApp</button>
+                </div>
+                <div class="contact-info">
+                    <h2>Contact Details</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: Namanga, Kenya</p>
+                    <p><i class="fas fa-phone"></i> Phone: +254 720827071</p>
+                    <p><i class="fas fa-phone"></i> Phone: +254 768471559</p>
+                    <p><i class="fas fa-envelope"></i> Email: Islamicintegratedschool@gmail.com</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="map">
+                <h2>Our Location</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13453.915481767248!2d36.92809315804664!3d-1.291458010186712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182a2c7f1f5c5f67%3A0x9e7e2e3c2b0c0c8e!2sMananga%2C%20Kenya!5e0!3m2!1sen!2sus!4v1643943947398!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Our School. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                emailjs.sendForm('service_wralkcn', 'template_nb4h3i6', this)
+                    .then(() => {
+                        alert('Message sent successfully');
+                    }, (error) => {
+                        alert('Message could not be sent');
+                        console.error('Error:', error);
+                    });
+            });
+
+            document.getElementById('send-whatsapp').addEventListener('click', function() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                const whatsappMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+                const whatsappURL = `https://wa.me/254768471559?text=${encodeURIComponent(whatsappMessage)}`;
+                const whatsappURL = `https://wa.me/254720827071?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                
+                // Open WhatsApp URL in a new tab
+                window.open(whatsappURL, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
